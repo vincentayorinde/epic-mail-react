@@ -8,7 +8,7 @@ module.exports = {
     '\\.(css|scss)$': '<rootDir>/__mocks__/styleMock.js',
     '\\.(jpg|gif|ttf|otf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js',
   },
-  moduleFileExtensions: [...defaults.moduleFileExtensions, 'scss', 'js'],
+  moduleFileExtensions: [...defaults.moduleFileExtensions, 'scss', 'js', 'yml'],
   setupFilesAfterEnv: ['./src/enzymeSetup/enzymeSetup.js'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
 };
