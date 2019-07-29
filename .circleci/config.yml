@@ -1,13 +1,16 @@
-version: 2
+version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:7.10
     environment:
       CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
     working_directory: ~/repo
     steps:
+      - codecov/upload:
+          file: coverage/*.json
       - checkout
        # Download and cache dependencies
       - restore_cache:
@@ -21,11 +24,45 @@ jobs:
           paths:
             - node_modules
             - dist
+            - ~/epic-mail-react/coverage
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Setup Code Climate test-reporter
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
-           # run tests!
       - run: npm test
+            ./cc-test-reporter format-coverage -t lcov -o codeclimate.frontend.json frontend/lcov.info
+      - persist_to_workspace:
+          root: .
+          paths: 
+            - coverage
+  upload-coverage:
+    docker:
+      - image: circleci/node:7.10
+    environment:
+      CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
+    working_directory: ~/epic-mail-react
+    steps:
+      - attach_workspace:
+          at: ~/epic-mail-react/coverage
+      - run:
+          name: Install Code Climate Test Reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+      # - run:
+      #     name: Upload coverage results to Code Climate
+      #     command: |
+      #         ./cc-test-reporter sum-coverage .nyc_output/*.json -p 1 -o codeclimate.total.json
+      #         ./cc-test-reporter upload-coverage -i codeclimate.total.json
+
+workflows:
+  version: 2
+
+  commit:
+    jobs:
+      - build
+      - upload-coverage:
+          requires:
+             - build
