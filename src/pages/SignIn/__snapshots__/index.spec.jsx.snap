@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sign Up View Component Should Render With Children Component 1`] = `
+exports[`Sign In View Component Should Render With Children Component 1`] = `
 <BrowserRouter>
   <Router
     history={
@@ -24,7 +24,7 @@ exports[`Sign Up View Component Should Render With Children Component 1`] = `
       }
     }
   >
-    <Connect(SignUp)
+    <Connect(SignIn)
       store={
         Object {
           "dispatch": [Function],
@@ -35,13 +35,13 @@ exports[`Sign Up View Component Should Render With Children Component 1`] = `
         }
       }
     >
-      <SignUp
+      <SignIn
         cleanUp={[Function]}
         error={null}
         isAuthenticated={false}
         isCompleted={false}
         isSubmit={false}
-        onSignUp={[Function]}
+        onSignIn={[Function]}
         store={
           Object {
             "dispatch": [Function],
@@ -116,7 +116,7 @@ exports[`Sign Up View Component Should Render With Children Component 1`] = `
                 Welcome to EPIC Mail
               </p>
               <h2>
-                Sign Up
+                Sign In
               </h2>
               <form
                 onSubmit={[Function]}
@@ -130,7 +130,6 @@ exports[`Sign Up View Component Should Render With Children Component 1`] = `
                   name="email"
                   onChange={[Function]}
                   pattern="^[\\\\w.]+@[\\\\w]{2,20}.[a-z]{2,10}$"
-                  placeholder="e.g. johndoe@examle.com"
                   required={true}
                   title="user@email.com"
                 >
@@ -139,46 +138,9 @@ exports[`Sign Up View Component Should Render With Children Component 1`] = `
                     name="email"
                     onChange={[Function]}
                     pattern="^[\\\\w.]+@[\\\\w]{2,20}.[a-z]{2,10}$"
-                    placeholder="e.g. johndoe@examle.com"
                     required={true}
                     title="user@email.com"
                     type="email"
-                  />
-                </Input>
-                <p>
-                  First Name
-                </p>
-                <Input
-                  id="firstname"
-                  name="firstname"
-                  onChange={[Function]}
-                  required={true}
-                  type="text"
-                >
-                  <input
-                    id="firstname"
-                    name="firstname"
-                    onChange={[Function]}
-                    required={true}
-                    type="text"
-                  />
-                </Input>
-                <p>
-                  Last Name
-                </p>
-                <Input
-                  id="lastname"
-                  name="lastname"
-                  onChange={[Function]}
-                  required={true}
-                  type="text"
-                >
-                  <input
-                    id="lastname"
-                    name="lastname"
-                    onChange={[Function]}
-                    required={true}
-                    type="text"
                   />
                 </Input>
                 <p>
@@ -199,54 +161,16 @@ exports[`Sign Up View Component Should Render With Children Component 1`] = `
                     type="password"
                   />
                 </Input>
-                <p>
-                  Re-Type Password
-                </p>
-                <Input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  onChange={[Function]}
-                  required={true}
-                  type="password"
-                >
-                  <input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    onChange={[Function]}
-                    required={true}
-                    type="password"
-                  />
-                </Input>
-                <p>
-                  Mobile
-                </p>
-                <Input
-                  id="mobile"
-                  name="mobile"
-                  onChange={[Function]}
-                  placeholder="e.g. 08011122233"
-                  required={true}
-                  type="text"
-                >
-                  <input
-                    id="mobile"
-                    name="mobile"
-                    onChange={[Function]}
-                    placeholder="e.g. 08011122233"
-                    required={true}
-                    type="text"
-                  />
-                </Input>
                 <Button
                   isSubmit={false}
-                  name="Start"
+                  name="Sign In"
                   type="submit"
                 >
                   <button
                     disabled={false}
                     type="submit"
                   >
-                    Start
+                    Sign In
                   </button>
                 </Button>
               </form>
@@ -255,15 +179,15 @@ exports[`Sign Up View Component Should Render With Children Component 1`] = `
               <i
                 className="fas fa-chevron-right"
               />
-               Already have an account? 
+               Don't have an account? 
               <Link
-                to="/signin"
+                to="/"
               >
                 <a
-                  href="/signin"
+                  href="/"
                   onClick={[Function]}
                 >
-                  Sign In
+                  Sign Up
                 </a>
               </Link>
             </div>
@@ -276,13 +200,13 @@ exports[`Sign Up View Component Should Render With Children Component 1`] = `
             />
           </div>
         </div>
-      </SignUp>
-    </Connect(SignUp)>
+      </SignIn>
+    </Connect(SignIn)>
   </Router>
 </BrowserRouter>
 `;
 
-exports[`Sign Up View Component Should render without errors 1`] = `
+exports[`Sign In View Component Should render without errors 1`] = `
 <Router
   history={
     Object {
@@ -305,7 +229,7 @@ exports[`Sign Up View Component Should render without errors 1`] = `
     }
   }
 >
-  <Connect(SignUp)
+  <Connect(SignIn)
     store={
       Object {
         "dispatch": [Function],

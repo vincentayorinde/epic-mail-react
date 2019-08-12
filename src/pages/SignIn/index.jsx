@@ -1,24 +1,21 @@
 import './index.scss';
 import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import { signUpAction, cleanSignUp } from '../../redux/actions/SignUp';
+import { toast } from 'react-toastify';
+import { signInAction, cleanSignIn } from '../../redux/actions/SignIn';
 import '../../assets/css/react-toastify.scss';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-const SignUp = (props) => {
+
+const SignIn = (props) => {
   const {
     isCompleted, history, isSubmit, error
   } = props;
   const [values, setValues] = useState({
-    firstname: '',
-    lastname: '',
     email: '',
-    mobile: '',
     password: '',
-    confirmPassword: ''
   });
   const onChange = (e) => {
     e.persist();
@@ -27,16 +24,19 @@ const SignUp = (props) => {
 
   const submit = (e) => {
     e.preventDefault();
-    if (values.password !== values.confirmPassword) {
-      toast.error(<h4 className="text-center">password must match</h4>);
+    /* istanbul ignore next */
+    if (!values.email && !values.password === true) {
+      /* istanbul ignore next */
+      toast.error(<h4 className="text-center">All fields are required</h4>);
+      /* istanbul ignore next */
       return;
     }
-    props.onSignUp(values);
+    props.onSignIn(values);
   };
 
   useEffect(() => {
     if (isCompleted) {
-      toast.success(<h4 id="toast-success" className="text-center">Registration successful</h4>);
+      toast.success(<h4 id="toast-success" className="text-center">Login successful</h4>);
       /* istanbul ignore next */
       history && history.push('/inbox');
     }
@@ -77,36 +77,27 @@ const SignUp = (props) => {
     <div className="box-2">
       <div className="signup">
         <p>Welcome to EPIC Mail</p>
-          <h2>Sign Up</h2>
+          <h2>Sign In</h2>
             <form onSubmit={submit}>
               <p>Email</p>
               <Input 
               inputType="email"
               name="email"
               id="email"
-              placeholder="e.g. johndoe@examle.com"
               onChange={onChange}
               pattern="^[\w.]+@[\w]{2,20}.[a-z]{2,10}$"
               title="user@email.com" 
               required />
-              <p>First Name</p>
-              <Input type="text" onChange={onChange} name="firstname" id="firstname" required />
-              <p>Last Name</p>
-              <Input type="text" onChange={onChange} name="lastname" id="lastname" required />
               <p>Password</p>
               <Input type="password" onChange={onChange} name="password" id="password" required />
-              <p>Re-Type Password</p>
-              <Input type="password" onChange={onChange} name="confirmPassword" id="confirmPassword" required />
-              <p>Mobile</p>
-              <Input type="text" onChange={onChange} name="mobile" id="mobile" required placeholder="e.g. 08011122233" />
               <Button
                 isSubmit={isSubmit} 
                 type="submit" 
-                name="Start" 
+                name="Sign In" 
               />
             </form> 
             <br /><br />
-            <i className="fas fa-chevron-right"></i> Already have an account? <Link to="/signin" >Sign In</Link>
+            <i className="fas fa-chevron-right"></i> Don't have an account? <Link to="/">Sign Up</Link>
       </div>
     </div>
     <div className="box-3">
@@ -119,17 +110,18 @@ const SignUp = (props) => {
 };
 
 const mapStateToProps = state => ({
-  error: state.auth.error,
-  user: state.auth.user,
-  isAuthenticated: state.auth.isAuthenticated,
-  isSubmit: state.auth.isSubmit,
-  isCompleted: state.auth.isCompleted
+  error: state.authLogin.error,
+  user: state.authLogin.user,
+  isAuthenticated: state.authLogin.isAuthenticated,
+  isSubmit: state.authLogin.isSubmit,
+  isCompleted: state.authLogin.isCompleted
 });
 
+
 /* istanbul ignore next */
-export const onSignUp = newUser => signUpAction(newUser);
-export const cleanUp = () => cleanSignUp();
+export const onSignIn = user => signInAction(user);
+export const cleanUp = () => cleanSignIn();
 
-export const SignUpComponent = SignUp;
+export const SignInComponent = SignIn;
 
-export default connect(mapStateToProps, { onSignUp, cleanUp })(SignUp);
+export default connect(mapStateToProps, { onSignIn, cleanUp })(SignIn);
