@@ -1,0 +1,315 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sign Up View Component Should Render With Children Component 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Connect(SignUp)
+      store={
+        Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        }
+      }
+    >
+      <SignUp
+        cleanUp={[Function]}
+        error={null}
+        isAuthenticated={false}
+        isCompleted={false}
+        isSubmit={false}
+        onSignUp={[Function]}
+        store={
+          Object {
+            "dispatch": [Function],
+            "getState": [Function],
+            "replaceReducer": [Function],
+            "subscribe": [Function],
+            Symbol(observable): [Function],
+          }
+        }
+        user={Object {}}
+      >
+        <div
+          className="container-1"
+        >
+          <div
+            className="box-1"
+          >
+            <div
+              className="content"
+            >
+              <p>
+                Experience
+              </p>
+              <p>
+                the new way to
+              </p>
+              <p>
+                 send messages
+              </p>
+              <p>
+                Use EPIC Mail 
+                <em>
+                  today!
+                </em>
+              </p>
+              <div
+                className="links"
+              >
+                <ul>
+                  <li>
+                    <a
+                      href="#"
+                    >
+                      Terms
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                    >
+                      Privacy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                    >
+                      APIs
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            className="box-2"
+          >
+            <div
+              className="signup"
+            >
+              <p>
+                Welcome to EPIC Mail
+              </p>
+              <h2>
+                Sign Up
+              </h2>
+              <form
+                onSubmit={[Function]}
+              >
+                <p>
+                  Email
+                </p>
+                <Input
+                  id="email"
+                  inputType="email"
+                  name="email"
+                  onChange={[Function]}
+                  pattern="^[\\\\w.]+@[\\\\w]{2,20}.[a-z]{2,10}$"
+                  placeholder="e.g. johndoe@examle.com"
+                  required={true}
+                  title="user@email.com"
+                >
+                  <input
+                    id="email"
+                    name="email"
+                    onChange={[Function]}
+                    pattern="^[\\\\w.]+@[\\\\w]{2,20}.[a-z]{2,10}$"
+                    placeholder="e.g. johndoe@examle.com"
+                    required={true}
+                    title="user@email.com"
+                    type="email"
+                  />
+                </Input>
+                <p>
+                  First Name
+                </p>
+                <Input
+                  id="firstname"
+                  name="firstname"
+                  onChange={[Function]}
+                  required={true}
+                  type="text"
+                >
+                  <input
+                    id="firstname"
+                    name="firstname"
+                    onChange={[Function]}
+                    required={true}
+                    type="text"
+                  />
+                </Input>
+                <p>
+                  Last Name
+                </p>
+                <Input
+                  id="lastname"
+                  name="lastname"
+                  onChange={[Function]}
+                  required={true}
+                  type="text"
+                >
+                  <input
+                    id="lastname"
+                    name="lastname"
+                    onChange={[Function]}
+                    required={true}
+                    type="text"
+                  />
+                </Input>
+                <p>
+                  Password
+                </p>
+                <Input
+                  id="password"
+                  name="password"
+                  onChange={[Function]}
+                  required={true}
+                  type="password"
+                >
+                  <input
+                    id="password"
+                    name="password"
+                    onChange={[Function]}
+                    required={true}
+                    type="password"
+                  />
+                </Input>
+                <p>
+                  Re-Type Password
+                </p>
+                <Input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  onChange={[Function]}
+                  required={true}
+                  type="password"
+                >
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    onChange={[Function]}
+                    required={true}
+                    type="password"
+                  />
+                </Input>
+                <p>
+                  Mobile
+                </p>
+                <Input
+                  id="mobile"
+                  name="mobile"
+                  onChange={[Function]}
+                  placeholder="e.g. 08011122233"
+                  required={true}
+                  type="text"
+                >
+                  <input
+                    id="mobile"
+                    name="mobile"
+                    onChange={[Function]}
+                    placeholder="e.g. 08011122233"
+                    required={true}
+                    type="text"
+                  />
+                </Input>
+                <Button
+                  isSubmit={false}
+                  name="Start"
+                  type="submit"
+                >
+                  <button
+                    disabled={false}
+                    type="submit"
+                  >
+                    Start
+                  </button>
+                </Button>
+              </form>
+              <br />
+              <br />
+              <i
+                className="fas fa-chevron-right"
+              />
+               Already have an account? 
+              <a
+                href="sign-in.html"
+              >
+                Sign In
+              </a>
+            </div>
+          </div>
+          <div
+            className="box-3"
+          >
+            <div
+              className="content"
+            />
+          </div>
+        </div>
+      </SignUp>
+    </Connect(SignUp)>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`Sign Up View Component Should render without errors 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Connect(SignUp)
+    store={
+      Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      }
+    }
+  />
+</Router>
+`;

@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import SampleReducer from './SampleReducer';
+
+import signUpReducer from './SignUp';
 
 const rootReducer = combineReducers({
-  SampleReducer,
+  auth: signUpReducer,
 });
 
 export default rootReducer;
