@@ -5,7 +5,7 @@ export const axiosRequest = async ({ url, payload, method }) => {
   const baseURL = 'https://epic-mail-global.herokuapp.com';
   console.log('app url', baseURL);
   const server = `${baseURL}${url}`;
-  const result = await axios[method](server, payload, { headers: { 'x-access-token': token } });
+  const result = await axios[method](server, payload);
   const data = result && result.data;
   return data;
 };

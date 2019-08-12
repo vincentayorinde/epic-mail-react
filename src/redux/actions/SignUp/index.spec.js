@@ -78,7 +78,7 @@ describe('Sign Up Auth', () => {
   });
  
   test('Should sign up user and initiate sign up actions', (done) => {
-    const expectedActions = ['SIGNUP_PENDING', 'CLEAN_SIGNUP', 'SIGNUP_USER', 'SIGNUP_SUCCESS'];
+    const expectedActions = ['CLEAN_SIGNUP', 'SIGNUP_SUCCESS'];
     axiosRequest.mockResolvedValue({ user: { token, ...user }});
     store.dispatch(signUpAction(user)).then(() => {
       const dispatchedActions = store.getActions();

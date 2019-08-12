@@ -10,12 +10,11 @@ export const setUser = payload => ({ type: 'SET_USER', payload });
 export const signUpAction = (signUpData, history) => async (dispatch) => {
   // dispatch(signInPending());
   dispatch(cleanSignUp());
-  dispatch(signUpUser());
+  // dispatch(signUpUser());
   try {
     const result = await axiosRequest({ url: '/api/v2/auth/signup', payload: signUpData, method: 'post' }); 
     populateLocalStorage(result.data);
     dispatch(signUpSuccess(result));
-    history.push('/');
   } catch (e) {
     /* istanbul ignore next */
     const { response } = e;
