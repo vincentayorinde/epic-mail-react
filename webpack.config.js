@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: path.join(__dirname, 'src', 'index.jsx'),
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'app.bundle.js',
@@ -24,9 +24,20 @@ module.exports = {
           'postcss-loader',
         ],
       }),
+    },{
+      test: /.(jpg|jpeg|png|gif|mp3|svg)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[path][name]-[hash:8].[ext]',
+            outputPath: 'images/',
+          },
+        },
+      ],
     }],
   },
-  resolve: { extensions: ['.js', '.jsx'] },
+  resolve: { extensions: ['.js', '.jsx', 'scss'] },
   devServer: {
     contentBase: path.join(__dirname, 'src'),
   },
