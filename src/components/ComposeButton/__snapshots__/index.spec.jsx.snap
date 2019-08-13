@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ComposeButton Component Should render without errors 1`] = `
+<div
+  className="box-1-inbox"
+>
+  <button>
+     
+    <i
+      className="fas fa-pen-square"
+    />
+    <a
+      href="compose.html"
+    />
+  </button>
+</div>
+`;

@@ -1,11 +1,22 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken'
 
-export const axiosRequest = async ({ url, payload, method }) => {
+export const axiosRequest = async ({ path, payload, method }) => {
   const baseURL = 'https://epic-mail-global.herokuapp.com';
-  console.log('app url', baseURL);
-  const server = `${baseURL}${url}`;
-  const result = await axios[method](server, payload);
+  const url = `${baseURL}${path}`;
+  const token = localStorage.getItem('token');
+  const axiosdata = {
+    method,
+    url,
+    data: payload,
+    headers: {
+      'x-access-token': token,
+      'Content-Type': 'application/json',
+    },
+    json: true,
+  };
+  const result = await axios(axiosdata);
+
   const data = result && result.data;
   return data;
 };
