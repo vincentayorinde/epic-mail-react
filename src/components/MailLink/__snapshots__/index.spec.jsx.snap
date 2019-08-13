@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MailLink Component Should render without errors 1`] = `
+<Fragment>
+  <div
+    className="record"
+  >
+    <span />
+    <br />
+    <span>
+       
+      <h3>
+        <i
+          className="fas fa-circle"
+        />
+         
+      </h3>
+       
+    </span>
+    <h4 />
+    <p />
+  </div>
+</Fragment>
+`;

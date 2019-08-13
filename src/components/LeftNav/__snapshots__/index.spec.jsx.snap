@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeftNav Component Should render without errors 1`] = `
+<ul>
+  <NavLink
+    className="nav active"
+    to="/inbox"
+  >
+    Inbox     
+    <span
+      className="notification"
+    />
+  </NavLink>
+  <NavLink
+    className="nav"
+    to="/sent"
+  >
+    Sent     
+    <span
+      className="notification"
+    />
+  </NavLink>
+  <NavLink
+    className="nav"
+    to="/draft"
+  >
+    Draft     
+    <span
+      className="notification"
+    >
+      2
+    </span>
+  </NavLink>
+  <NavLink
+    className="nav"
+    to="/group"
+  >
+    Groups     
+    <span
+      className="notification"
+    />
+  </NavLink>
+  <NavLink
+    className="nav"
+    to="/trash"
+  >
+    Trash     
+    <span
+      className="notification"
+    />
+  </NavLink>
+  <NavLink
+    className="nav"
+    to="/signin"
+  >
+    Sign Out     
+    <span
+      className="notification"
+    />
+  </NavLink>
+</ul>
+`;

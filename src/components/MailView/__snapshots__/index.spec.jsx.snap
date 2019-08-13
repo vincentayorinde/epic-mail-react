@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MailView Component Should render without errors 1`] = `
+<div
+  className="mailView"
+>
+  <p>
+    <strong />
+     to 
+    <strong />
+  </p>
+  <h1 />
+  <p />
+  <div
+    className="hr"
+  />
+  <textarea
+    rows="5"
+  >
+    Hi Vincent Thanks for your email 
+  </textarea>
+</div>
+`;

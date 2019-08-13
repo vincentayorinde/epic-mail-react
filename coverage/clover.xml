@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1565630538764" clover="3.2.0">
-  <project timestamp="1565630538764" name="All files">
-    <metrics statements="101" coveredstatements="101" conditionals="34" coveredconditionals="34" methods="39" coveredmethods="39" elements="174" coveredelements="174" complexity="0" loc="101" ncloc="101" packages="11" files="11" classes="11"/>
+<coverage generated="1565704716577" clover="3.2.0">
+  <project timestamp="1565704716577" name="All files">
+    <metrics statements="126" coveredstatements="126" conditionals="39" coveredconditionals="39" methods="50" coveredmethods="50" elements="215" coveredelements="215" complexity="0" loc="126" ncloc="126" packages="18" files="18" classes="18"/>
     <package name="components.Button">
       <metrics statements="2" coveredstatements="2" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
       <file name="index.jsx" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/components/Button/index.jsx">
@@ -10,12 +10,52 @@
         <line num="4" count="20" type="stmt"/>
       </file>
     </package>
+    <package name="components.ComposeButton">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.jsx" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/components/ComposeButton/index.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="components.Input">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="index.jsx" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/components/Input/index.jsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="3" count="3" type="stmt"/>
         <line num="4" count="85" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.LeftNav">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.jsx" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/components/LeftNav/index.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.MailLink">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.jsx" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/components/MailLink/index.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.MailView">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.jsx" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/components/MailView/index.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.MailViewMobile">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.jsx" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/components/MailViewMobile/index.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
       </file>
     </package>
     <package name="components.header">
@@ -91,6 +131,20 @@
         <line num="9" count="3" type="stmt"/>
       </file>
     </package>
+    <package name="redux.actions.Inbox">
+      <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+      <file name="index.js" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/redux/actions/Inbox/index.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="redux.actions.SignIn">
       <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="10"/>
       <file name="index.js" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/redux/actions/SignIn/index.js">
@@ -134,7 +188,20 @@
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.js" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/redux/reducers/index.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="redux.reducers.Inbox">
+      <metrics statements="7" coveredstatements="7" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
+      <file name="index.js" path="/Users/vincentolagbemide/Documents/ReactProjects/main/epic-mail-react/src/redux/reducers/Inbox/index.js">
+        <metrics statements="7" coveredstatements="7" conditionals="5" coveredconditionals="5" methods="1" coveredmethods="1"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="9" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="13" type="cond" truecount="4" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="29" count="10" type="stmt"/>
       </file>
     </package>
     <package name="redux.reducers.SignIn">

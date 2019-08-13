@@ -12,7 +12,7 @@ export const signUpAction = (signUpData, history) => async (dispatch) => {
   dispatch(cleanSignUp());
   // dispatch(signUpUser());
   try {
-    const result = await axiosRequest({ url: '/api/v2/auth/signup', payload: signUpData, method: 'post' }); 
+    const result = await axiosRequest({ path: '/api/v2/auth/signup', payload: signUpData, method: 'post' }); 
     populateLocalStorage(result.data);
     dispatch(signUpSuccess(result));
   } catch (e) {
