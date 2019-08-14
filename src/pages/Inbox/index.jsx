@@ -3,24 +3,36 @@ import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { loadInboxAction } from '../../redux/actions/Inbox';
+import { getMessageAction } from '../../redux/actions/getMessage';
 import '../../assets/css/react-toastify.scss';
 import dp from '../../assets/images/profile-pictures/vince.png';
 import ComposeButton from '../../components/ComposeButton'
 import LeftNav from '../../components/LeftNav'
 import MailLink from '../../components/MailLink'
 import MailView from '../../components/MailView'
+import MailLinkMobile from '../../components/MailLinkMobile'
 import MailViewMobile from '../../components/MailViewMobile'
 
 class Inbox extends Component {
   state = {
     user: this.props.user,
+    message: this.props.message,
     hamburgerIcon: true,
+    mobileMsg: false,
   };
 
   componentDidMount() {
     this.props.loadInbox();
   }
-
+ 
+  showMessage = async () => {
+    const msgBox = event.target.parentElement;
+    if (msgBox.classList[0] === 'view') {
+      const { id } = msgBox;
+      this.props.getMessage(id);
+    }
+  }
+ 
   closeNav = () => {
     this.setState({
       hamburgerIcon: true
@@ -33,23 +45,54 @@ class Inbox extends Component {
     })
   }
 
+  closeMessage = () => {
+    this.setState({
+      mobileMsg: false
+    })
+  }
+
+  readMessage = () => {
+    this.setState({
+      mobileMsg: true
+    });
+  }
+  showMessageMobile = async () => {
+    this.readMessage();
+    const msgBox = event.target.parentElement;
+    if (msgBox.classList[0] === 'view') {
+      const { id } = msgBox;
+      this.props.getMessage(id);
+    }
+  }
+ 
+
   render() {
     const { messages } = this.props;
+    const { message } = this.props;
     const allMessages = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        <MailLink onClick={this.showMsg} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} />
+        <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
       <p className="empty">No Inbox messages yet</p>
     );
     const allMessagesMobile = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        <MailViewMobile dp={dp} onClick={this.showMsg} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} />
+        <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
       <p className="empty">No Inbox message</p>
     );
-
+    const specificMsg = message.data ? (
+        <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} />
+    ) : (
+      <p className="empty">No message selected yet</p>
+    );
+    const specificMsgMobile = message.data ? (
+      <MailViewMobile key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} classes={`box-12-inbox ${ this.state.mobileMsg ? 'readMessage' : 'closeMessage' }` } back={this.closeMessage} />
+  ) : (
+    ''
+  );
       return (
         <Fragment>
           <div className="container-1-inbox">
@@ -78,13 +121,7 @@ class Inbox extends Component {
             
           </div>
           <div className="box-7-inbox">
-            {/* <MailView /> */}
-            {/* <div className="reply-icons">
-                <i className="fas fa-font"></i>
-                <i className="fas fa-paperclip"></i>
-                <i className="fas fa-link"></i>
-            </div>
-            <button>Send</button> */}
+            {specificMsg}
           </div>
       </div>
       <div className="container-mobile-inbox">
@@ -100,31 +137,12 @@ class Inbox extends Component {
             <div id="composeMobile">
                 <a href="compose.html"><i id="composeNew" className="fas fa-plus-circle"></i></a>
                 </div>
-            </div>
+        </div>
           <div className={`box-10-inbox ${ this.state.hamburgerIcon ? 'closeNav' : 'openNav' }` } id="mySidenav"><br /><br />
               <a className="closebtn" onClick={this.closeNav}><i className="fas fa-times"></i></a>
-              <LeftNav />
+              <LeftNav inboxCount={allMessages.length} />
           </div>
-          
-            <div className="box-12-inbox" id="readMessage">
-                <div className="box-11">
-                    <i className="fas fa-chevron-left"></i>
-                    <i className="fas fa-trash-alt"></i>
-                    <i className="fas fa-reply"></i>
-                    <i className="fas fa-reply-all"></i>
-                    <i className="fas fa-forward"></i>
-                    
-                    
-                  </div>
-                <div className="body-inbox">
-                  <h1>Designing of Estate Project</h1><br />
-                  <p>From<strong> Vincent Ayorinde</strong> to <strong>Larry Peters</strong></p>
-                  <br />
-                  <p>Hi Larry</p>
-                  <p>I love your UI design work and would love your to talk to you about possibly revamping the UI on our desktop application. Can we jump on Zoom and discus when you have the time </p>
-                  <p>I am looking for a UI designer for an upcoming Estate app. We already have an established web presence and we are now moving to mobile space.</p>
-                </div>
-            </div>
+            {specificMsgMobile}
         </div>
         </Fragment>
       );
@@ -134,13 +152,13 @@ class Inbox extends Component {
 
 const mapStateToProps = state => ({
   messages: state.inbox.messages,
+  message: state.getMessage.message,
 });
 
 const mapDispatchToProps = {
   loadInbox: loadInboxAction,
+  getMessage: getMessageAction
 };
 export const onLoadInbox = user => loadInboxAction(user);
-
-export const InboxComponent = Inbox;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inbox);

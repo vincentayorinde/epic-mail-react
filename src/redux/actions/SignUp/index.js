@@ -19,7 +19,7 @@ export const signUpAction = (signUpData, history) => async (dispatch) => {
     /* istanbul ignore next */
     const { response } = e;
     /* istanbul ignore next */
-    const message = response.data.message || response;
+    const message = response.data.message || response.data.errors.mobile || response ;
     /* istanbul ignore next */
     dispatch(signUpError(message));
   }

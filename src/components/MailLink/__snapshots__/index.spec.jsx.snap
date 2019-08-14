@@ -3,22 +3,26 @@
 exports[`MailLink Component Should render without errors 1`] = `
 <Fragment>
   <div
-    className="record"
+    className="view record"
   >
     <span />
     <br />
-    <span>
+    <span
+      className="view"
+    >
        
       <h3>
-        <i
-          className="fas fa-circle"
-        />
+        <i />
          
       </h3>
        
     </span>
-    <h4 />
-    <p />
+    <h4
+      className="view"
+    />
+    <p
+      className="view"
+    />
   </div>
 </Fragment>
 `;
