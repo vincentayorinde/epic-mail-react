@@ -4,7 +4,7 @@
   "description": "Epic Mail is a web application that help people exchange messages or information over the internet",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --runInBand --coverage",
     "test:codecov": "nyc --reporter=lcov jest --coverage && npm run coverage",
     "webpack": "webpack",
     "start": "webpack-dev-server",

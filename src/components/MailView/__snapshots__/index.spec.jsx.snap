@@ -5,8 +5,15 @@ exports[`MailView Component Should render without errors 1`] = `
   className="mailView"
 >
   <p>
+    <small>
+       From 
+    </small>
     <strong />
-     to 
+     
+    <small>
+       to 
+    </small>
+     
     <strong />
   </p>
   <h1 />

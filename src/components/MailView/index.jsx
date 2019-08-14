@@ -2,7 +2,7 @@ import React from 'react';
 
 const MailView = ({id, sender, receiver, title, messageBody}) => (
   <div id={id} className="mailView">
-            <p><strong>{sender}</strong> to <strong>{receiver}</strong></p>
+            <p><small> From </small><strong>{sender}</strong> <small> to </small> <strong>{receiver}</strong></p>
             <h1>{title}</h1>
             <p>{messageBody}</p>
             <div className="hr"></div>

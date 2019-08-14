@@ -2,32 +2,46 @@
 
 exports[`MailViewMobile Component Should render without errors 1`] = `
 <div
-  className="record"
+  id="readMessage"
 >
   <div
-    className="pic"
+    className="box-11-inbox"
   >
-    <img
-      alt=""
+    <i
+      className="fas fa-chevron-left"
+    />
+    <i
+      className="fas fa-trash-alt"
+    />
+    <i
+      className="fas fa-reply"
+    />
+    <i
+      className="fas fa-reply-all"
+    />
+    <i
+      className="fas fa-forward"
     />
   </div>
   <div
-    className="record-inner"
+    className="body-inbox"
   >
-    <span />
+    <h1 />
     <br />
-    <span>
-       
-      <h3>
-        <i
-          className="fas fa-circle"
-        />
+    <small>
+      From: 
+      <strong>
          
-      </h3>
+      </strong>
        
-    </span>
-    <h4 />
-    <p />
+      <br />
+      To: 
+      <strong>
+         
+      </strong>
+    </small>
+    <br />
+    <br />
   </div>
 </div>
 `;
