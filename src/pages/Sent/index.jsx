@@ -2,9 +2,8 @@ import './index.scss';
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { loadInboxAction } from '../../redux/actions/Inbox';
+import { loadSentAction } from '../../redux/actions/Sent';
 import { getMessageAction } from '../../redux/actions/getMessage';
-import { deleteMessageAction } from '../../redux/actions/deleteMessage';
 import '../../assets/css/react-toastify.scss';
 import dp from '../../assets/images/profile-pictures/vince.png';
 import ComposeButton from '../../components/ComposeButton'
@@ -14,7 +13,7 @@ import MailView from '../../components/MailView'
 import MailLinkMobile from '../../components/MailLinkMobile'
 import MailViewMobile from '../../components/MailViewMobile'
 
-class Inbox extends Component {
+class Sent extends Component {
   state = {
     user: this.props.user,
     message: this.props.message,
@@ -23,7 +22,7 @@ class Inbox extends Component {
   };
 
   componentDidMount() {
-    this.props.loadInbox();
+    this.props.loadSent();
   }
  
   showMessage = async () => {
@@ -70,19 +69,20 @@ class Inbox extends Component {
   render() {
     const { messages } = this.props;
     const { message } = this.props;
+    console.log('the messages', messages);
     const allMessages = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
         <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
-      <p className="empty">No Inbox messages yet</p>
+      <p className="empty">No Sent messages yet</p>
     );
     const allMessagesMobile = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
         <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
-      <p className="empty">No Inbox message</p>
+      <p className="empty">No Sent message</p>
     );
     const specificMsg = message.data ? (
         <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} />
@@ -147,16 +147,14 @@ class Inbox extends Component {
 
 
 const mapStateToProps = state => ({
-  messages: state.inbox.messages,
+  messages: state.sent.messages,
   message: state.getMessage.message,
-  dele: state.getMessage.message,
 });
 
 const mapDispatchToProps = {
-  loadInbox: loadInboxAction,
-  getMessage: getMessageAction,
-  deleteMessage: deleteMessageAction
+  loadSent: loadSentAction,
+  getMessage: getMessageAction
 };
-export const onLoadInbox = user => loadInboxAction(user);
+export const onSentInbox = user => loadInboxAction(user);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Inbox);
+export default connect(mapStateToProps, mapDispatchToProps)(Sent);

@@ -12,9 +12,6 @@ exports[`ComposeButton Component Should render without errors 1`] = `
       <i
         className="fas fa-pen-square"
       />
-      <a
-        href="compose.html"
-      />
     </button>
   </Link>
 </div>
