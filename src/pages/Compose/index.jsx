@@ -43,14 +43,16 @@ const Compose = (props) => {
       /* istanbul ignore next */
       history && history.push('/sent');
     }
-    if (error) {
-      if (Array.isArray(error)) {
-        for (let i = 0; i < error.length; i += 1) {
-          toast.error(<h4 className="text-center">{error[i].message}</h4>);
-        }
-      } else {
-        toast.error(<h4 className="text-center">{error}</h4>);
-      }
+    if (error !== null) {
+      console.log('the error', error);
+      toast.error(<h4 className="text-center">{error.data.message}</h4>);
+      // if (Array.isArray(error)) {
+      //   for (let i = 0; i < error.length; i += 1) {
+      //     toast.error(<h4 className="text-center">{error[i].message}</h4>);
+      //   }
+      // } else {
+      //   toast.error(<h4 className="text-center">{error}</h4>);
+      // }
     }
   
   }, [isCompleted, error]);

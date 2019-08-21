@@ -4,6 +4,10 @@ exports[`MailView Component Should render without errors 1`] = `
 <div
   className="mailView"
 >
+  <Button
+    name="Delete"
+    type="submit"
+  />
   <p>
     <small>
        From 

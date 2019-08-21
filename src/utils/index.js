@@ -5,6 +5,7 @@ export const axiosRequest = async ({ path, payload, method }) => {
   const baseURL = 'https://epic-mail-global.herokuapp.com';
   const url = `${baseURL}${path}`;
   const token = localStorage.getItem('token');
+  console.log('this is the token', token);
   const axiosdata = {
     method,
     url,

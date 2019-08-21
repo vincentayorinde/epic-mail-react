@@ -12,6 +12,8 @@ exports[`MailViewMobile Component Should render without errors 1`] = `
     />
     <i
       className="fas fa-trash-alt"
+      name="Delete"
+      type="submit"
     />
     <i
       className="fas fa-reply"

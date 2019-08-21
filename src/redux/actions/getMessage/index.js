@@ -11,7 +11,6 @@ export const getMessageAction = id => async (dispatch) => {
     dispatch(getMessageSuccess(result));
   } catch (e) {
     /* istanbul ignore next */
-    /* istanbul ignore next */
     const message = response.data.error || response;
     /* istanbul ignore next */
     dispatch(getMessageError(message));
