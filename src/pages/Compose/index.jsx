@@ -1,6 +1,7 @@
 import './index.scss';
 // import '../Inbox/index.scss';
 import React, { Fragment, useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { composeAction } from '../../redux/actions/Compose';
@@ -9,6 +10,7 @@ import ComposeButton from '../../components/ComposeButton'
 import LeftNav from '../../components/LeftNav';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+
 
 
 const Compose = (props) => {
@@ -104,7 +106,7 @@ const Compose = (props) => {
     </div>
   <div className="container-mobile-compose">
   <div className="box-6-compose">
-         <span ><i className="fas fa-chevron-left"></i></span>
+         <NavLink to="/inbox"><span ><i className="fas fa-chevron-left"></i></span></NavLink>
          <h1 >Compose</h1>
       </div>
        <div className="box-7-compose">

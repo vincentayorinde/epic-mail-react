@@ -130,7 +130,8 @@ describe('Sign In Reducer', () => {
         type: 'CLEAN_SIGNIN',
       })).toEqual(
         {
-          ...initialState
+          ...initialState,
+          isCompleted: true,
         }
       );
     });

@@ -2,6 +2,7 @@ import './index.scss';
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
+import noMessage from '../../assets/images/no-message.jpg';
 import { loadSentAction } from '../../redux/actions/Sent';
 import { getMessageAction } from '../../redux/actions/getMessage';
 import '../../assets/css/react-toastify.scss';
@@ -75,17 +76,17 @@ class Sent extends Component {
         <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
-      <p className="empty">No Sent messages yet</p>
+      <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const allMessagesMobile = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
         <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
-      <p className="empty">No Sent message</p>
+      <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const specificMsg = message.data ? (
-        <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} />
+      message.senderdelete &&  <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} />
     ) : (
       <p className="empty">No message selected yet</p>
     );
@@ -123,7 +124,7 @@ class Sent extends Component {
       <div className="container-mobile-inbox">
         <div className="box-8-inbox">
             <span className="i2e"><i onClick={this.openNav} className="fas fa-bars"></i></span>
-            <h1 >Inbox</h1>
+            <h1 >Sent</h1>
             <span><i id="searchIcon" className="fas fa-search"></i></span>
         </div>
       

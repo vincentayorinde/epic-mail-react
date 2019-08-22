@@ -6,6 +6,7 @@ import inboxReducer from './Inbox';
 import sentReducer from './Sent';
 import getMessageReducer from './getMessage';
 import composeReducer from './Compose';
+import deleteMessageReducer from './deleteMessage';
 
 const rootReducer = combineReducers({
   auth: signUpReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   inbox: inboxReducer,
   sent: sentReducer,
   getMessage: getMessageReducer,
-  compose: composeReducer
+  compose: composeReducer,
+  deleteMessage: deleteMessageReducer
 });
 
 export default rootReducer;

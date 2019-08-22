@@ -1,3 +1,5 @@
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import jwt from 'jsonwebtoken'
 
@@ -34,8 +36,4 @@ export const populateLocalStorage = (userData) => {
       localStorage.setItem('user', JSON.stringify(payload));
     });
   }
-};
-
-export const emptyLocalStorage = () => {
-  localStorage.clear();
 };

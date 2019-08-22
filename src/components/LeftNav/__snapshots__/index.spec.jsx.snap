@@ -22,26 +22,6 @@ exports[`LeftNav Component Should render without errors 1`] = `
   </NavLink>
   <NavLink
     className="nav"
-    to="/draft"
-  >
-    Draft     
-    <span
-      className="notification"
-    >
-      2
-    </span>
-  </NavLink>
-  <NavLink
-    className="nav"
-    to="/group"
-  >
-    Groups     
-    <span
-      className="notification"
-    />
-  </NavLink>
-  <NavLink
-    className="nav"
     to="/trash"
   >
     Trash     
@@ -51,7 +31,7 @@ exports[`LeftNav Component Should render without errors 1`] = `
   </NavLink>
   <NavLink
     className="nav"
-    to="/signin"
+    to="/sign-out"
   >
     Sign Out     
     <span
