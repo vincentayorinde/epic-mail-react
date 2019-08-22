@@ -1,9 +1,8 @@
-import './index.scss';
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import noMessage from '../../assets/images/no-message.jpg';
-import { loadSentAction } from '../../redux/actions/Sent';
+import { loadTrashAction } from '../../redux/actions/Trash';
 import { getMessageAction } from '../../redux/actions/getMessage';
 import '../../assets/css/react-toastify.scss';
 import dp from '../../assets/images/profile-pictures/vince.png';
@@ -14,7 +13,7 @@ import MailView from '../../components/MailView'
 import MailLinkMobile from '../../components/MailLinkMobile'
 import MailViewMobile from '../../components/MailViewMobile'
 
-class Sent extends Component {
+class Trash extends Component {
   state = {
     user: this.props.user,
     message: this.props.message,
@@ -23,7 +22,7 @@ class Sent extends Component {
   };
 
   componentDidMount() {
-    this.props.loadSent();
+    this.props.loadTrash();
   }
  
   showMessage = async () => {
@@ -73,20 +72,20 @@ class Sent extends Component {
     console.log('the messages', messages);
     const allMessages = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        message.senderdelete &&  <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
+        <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
       <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const allMessagesMobile = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        message.senderdelete &&  <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
+        <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
       <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const specificMsg = message.data ? (
-     <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} />
+      message.senderdelete &&  <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} />
     ) : (
       <p className="empty">No message selected yet</p>
     );
@@ -124,7 +123,7 @@ class Sent extends Component {
       <div className="container-mobile-inbox">
         <div className="box-8-inbox">
             <span className="i2e"><i onClick={this.openNav} className="fas fa-bars"></i></span>
-            <h1 >Sent</h1>
+            <h1 >Trash</h1>
             <span><i id="searchIcon" className="fas fa-search"></i></span>
         </div>
       
@@ -148,14 +147,14 @@ class Sent extends Component {
 
 
 const mapStateToProps = state => ({
-  messages: state.sent.messages,
+  messages: state.trash.messages,
   message: state.getMessage.message,
 });
 
 const mapDispatchToProps = {
-  loadSent: loadSentAction,
+  loadTrash: loadTrashAction,
   getMessage: getMessageAction
 };
-export const onSentInbox = user => loadInboxAction(user);
+export const onLoadTrash = user => loadTrashAction(user);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sent);
+export default connect(mapStateToProps, mapDispatchToProps)(Trash);

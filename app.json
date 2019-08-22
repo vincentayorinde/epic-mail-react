@@ -1,0 +1,21 @@
+{
+  "env": {
+    "NODE_ENV": {
+      "required": true
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "",
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "Epic Mail React Redux",
+  "scripts": {},
+  "stack": "heroku-18"
+}
