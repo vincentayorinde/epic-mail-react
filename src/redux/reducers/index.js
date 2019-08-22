@@ -7,6 +7,7 @@ import sentReducer from './Sent';
 import getMessageReducer from './getMessage';
 import composeReducer from './Compose';
 import deleteMessageReducer from './deleteMessage';
+import trashReducer from './Trash';
 
 const rootReducer = combineReducers({
   auth: signUpReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   sent: sentReducer,
   getMessage: getMessageReducer,
   compose: composeReducer,
-  deleteMessage: deleteMessageReducer
+  deleteMessage: deleteMessageReducer,
+  trash: trashReducer
 });
 
 export default rootReducer;
