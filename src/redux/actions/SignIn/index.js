@@ -9,8 +9,6 @@ export const setSignedInUser = payload => ({ type: 'SET_SIGNED_USER', payload })
 
 export const signInAction = (signInData, history) => async (dispatch) => {
   dispatch(signInPending());
-  dispatch(cleanSignIn());
-  // dispatch(signInUser());
   try {
     const result = await axiosRequest({ path: '/api/v2/auth/login', payload: signInData, method: 'post' }); 
     populateLocalStorage(result);

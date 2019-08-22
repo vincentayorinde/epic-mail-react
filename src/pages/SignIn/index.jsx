@@ -117,7 +117,6 @@ const mapStateToProps = state => ({
   isCompleted: state.authLogin.isCompleted
 });
 
-
 /* istanbul ignore next */
 export const onSignIn = user => signInAction(user);
 export const cleanUp = () => cleanSignIn();

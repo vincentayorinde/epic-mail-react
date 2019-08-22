@@ -29,7 +29,7 @@ const signInReducer = (state = initialState, action) => {
     case 'CLEAN_SIGNIN':
       return {
         ...state,
-        isCompleted: false,
+        isCompleted: true,
         error: null,
       };
     case 'SET_SIGNED_USER':

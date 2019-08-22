@@ -1,12 +1,13 @@
 import './index.scss';
 import React, { Fragment, Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { toast } from 'react-toastify';
 import { loadInboxAction } from '../../redux/actions/Inbox';
 import { getMessageAction } from '../../redux/actions/getMessage';
 import { deleteMessageAction } from '../../redux/actions/deleteMessage';
 import '../../assets/css/react-toastify.scss';
 import dp from '../../assets/images/profile-pictures/vince.png';
+import noMessage from '../../assets/images/no-message.jpg';
 import ComposeButton from '../../components/ComposeButton'
 import LeftNav from '../../components/LeftNav'
 import MailLink from '../../components/MailLink'
@@ -15,6 +16,7 @@ import MailLinkMobile from '../../components/MailLinkMobile'
 import MailViewMobile from '../../components/MailViewMobile'
 
 class Inbox extends Component {
+
   state = {
     user: this.props.user,
     message: this.props.message,
@@ -26,6 +28,15 @@ class Inbox extends Component {
     this.props.loadInbox();
   }
  
+  deleteMessage = async () => {
+      const msgBox = event.target.parentElement;
+      if (msgBox.classList[0] === 'mailView') {
+        const { id } = msgBox;
+        console.log('message id is', id);
+        this.props.deleteMessage(id);
+      }
+  }
+
   showMessage = async () => {
     const msgBox = event.target.parentElement;
     if (msgBox.classList[0] === 'view') {
@@ -72,20 +83,20 @@ class Inbox extends Component {
     const { message } = this.props;
     const allMessages = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
+      message.receiverdelete === false && <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
-      <p className="empty">No Inbox messages yet</p>
+      <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const allMessagesMobile = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
         <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
-      <p className="empty">No Inbox message</p>
+      <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const specificMsg = message.data ? (
-        <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} />
+        <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} deleteMsg={this.deleteMessage} />
     ) : (
       <p className="empty">No message selected yet</p>
     );
@@ -105,7 +116,7 @@ class Inbox extends Component {
           </div>
           <div className="container-2-inbox">
               <div className="box-4-inbox">
-              <LeftNav inboxCount={allMessages.length}/>
+              <LeftNav />
               </div>
             <div className="box-5-inbox">
                 {allMessages}
@@ -131,12 +142,12 @@ class Inbox extends Component {
             <span id="searchMobile"><input type="text" placeholder="Search" /></span>
             {allMessagesMobile}
             <div id="composeMobile">
-                <a href="compose.html"><i id="composeNew" className="fas fa-plus-circle"></i></a>
+                <NavLink to="/compose"><i id="composeNew" className="fas fa-plus-circle"></i></NavLink>
                 </div>
         </div>
           <div className={`box-10-inbox ${ this.state.hamburgerIcon ? 'closeNav' : 'openNav' }` } id="mySidenav"><br /><br />
               <a className="closebtn" onClick={this.closeNav}><i className="fas fa-times"></i></a>
-              <LeftNav inboxCount={allMessages.length} />
+              <LeftNav />
           </div>
             {specificMsgMobile}
         </div>
@@ -149,7 +160,8 @@ class Inbox extends Component {
 const mapStateToProps = state => ({
   messages: state.inbox.messages,
   message: state.getMessage.message,
-  dele: state.getMessage.message,
+  delete: state.deleteMessage.message,
+  error: state.inbox.error
 });
 
 const mapDispatchToProps = {
