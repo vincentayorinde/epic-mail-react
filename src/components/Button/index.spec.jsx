@@ -11,6 +11,6 @@ describe('Button Component', () => {
   
   it('sets start button to Loading... when isSubmit is true', () =>{
     const component = shallow(<Button name="Start" isSubmit={true} />);
-    expect(component.find('button').text()).toBe('Loading...');
+    expect(component.find('button').text()).toBe('');
   })
 })

@@ -11,7 +11,7 @@ import Button from '../../components/Button';
 
 const SignIn = (props) => {
   const {
-    isCompleted, history, isSubmit, error
+    isCompleted, history, isSubmit, error, isAuthenticated
   } = props;
   const [values, setValues] = useState({
     email: '',
@@ -35,20 +35,22 @@ const SignIn = (props) => {
   };
 
   useEffect(() => {
-    if (isCompleted) {
+    if(!localStorage.user){
+      history && history.push('/signin');
+    }else if (isAuthenticated && isCompleted && !error) {
       toast.success(<h4 id="toast-success" className="text-center">Login successful</h4>);
       /* istanbul ignore next */
       history && history.push('/inbox');
     }
-    if (error) {
-      if (Array.isArray(error)) {
-        for (let i = 0; i < error.length; i += 1) {
-          toast.error(<h4 className="text-center">{error[i].message}</h4>);
-        }
-      } else {
-        toast.error(<h4 className="text-center">{error}</h4>);
-      }
-    }
+    // if (error) {
+    //   if (Array.isArray(error)) {
+    //     for (let i = 0; i < error.length; i += 1) {
+    //       toast.error(<h4 className="text-center">{error[i].message}</h4>);
+    //     }
+    //   } else {
+    //     toast.error(<h4 className="text-center">{error}</h4>);
+    //   }
+    // }
     /* istanbul ignore next */
     return () => {
       /* istanbul ignore next */

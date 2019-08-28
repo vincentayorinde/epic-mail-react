@@ -14,6 +14,10 @@ import MailLinkMobile from '../../components/MailLinkMobile'
 import MailViewMobile from '../../components/MailViewMobile'
 
 class Trash extends Component {
+  constructor(props) {
+    super(props);
+    this.currentUser;
+}
   state = {
     user: this.props.user,
     message: this.props.message,
@@ -22,6 +26,8 @@ class Trash extends Component {
   };
 
   componentDidMount() {
+    const userData = JSON.parse(localStorage.user);
+    this.currentUser = userData.userId;
     this.props.loadTrash();
   }
  
@@ -72,14 +78,14 @@ class Trash extends Component {
     console.log('the messages', messages);
     const allMessages = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
+        message.senderid == this.currentUser || message.receiverid == this.currentUser && message.senderdelete || message.receiverdelete &&  <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
       <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const allMessagesMobile = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
+        message.senderid == this.currentUser || message.receiverid == this.currentUser && message.senderdelete || message.receiverdelete &&   <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
       <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>

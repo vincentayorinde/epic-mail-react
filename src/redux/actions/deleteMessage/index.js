@@ -9,6 +9,7 @@ export const deleteMessageAction = id => async (dispatch) => {
   try {
     const result = await axiosRequest({ path: `/api/v2/messages/${id}`, method: 'delete' }); 
     dispatch(deleteMessageSuccess(result));
+    console.log('the result', result);
   } catch (e) {
     /* istanbul ignore next */
     const message = response.data.error || response;
