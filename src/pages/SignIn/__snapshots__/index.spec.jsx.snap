@@ -167,7 +167,6 @@ exports[`Sign In View Component Should Render With Children Component 1`] = `
                   type="submit"
                 >
                   <button
-                    disabled={false}
                     type="submit"
                   >
                     Sign In

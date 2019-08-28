@@ -7,7 +7,6 @@ export const axiosRequest = async ({ path, payload, method }) => {
   const baseURL = 'https://epic-mail-global.herokuapp.com';
   const url = `${baseURL}${path}`;
   const token = localStorage.getItem('token');
-  console.log('this is the token', token);
   const axiosdata = {
     method,
     url,
@@ -24,11 +23,12 @@ export const axiosRequest = async ({ path, payload, method }) => {
   return data;
 };
 
-export const populateLocalStorage = (userData) => {
+export const populateLocalStorage = async (userData) => {
+  console.log('user data', userData);
   if (userData) {
     const { token } = userData;
     // verify token
-    jwt.verify(token, 'secretKey', (err, payload) => {
+    await jwt.verify(token, 'secretKey', (err, payload) => {
       if (err) {
           return console.log('ERROR: ', err);
       }

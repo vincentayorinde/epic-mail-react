@@ -9,9 +9,9 @@ import Sent from '../pages/Sent'
 import Trash from '../pages/Trash'
 
 const SignOut = () => {
-  localStorage.clear('token');
-  localStorage.clear('user');
-  return <Redirect to='/signin'  />
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  return <Redirect to='/'  />
 }
 
 const Routes = () => (

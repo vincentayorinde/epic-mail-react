@@ -16,6 +16,10 @@ import MailLinkMobile from '../../components/MailLinkMobile'
 import MailViewMobile from '../../components/MailViewMobile'
 
 class Inbox extends Component {
+  constructor(props) {
+    super(props);
+    this.currentUser;
+}
 
   state = {
     user: this.props.user,
@@ -25,10 +29,12 @@ class Inbox extends Component {
   };
 
   componentDidMount() {
+    const userData = JSON.parse(localStorage.user);
+    this.currentUser = userData.userId;
     this.props.loadInbox();
   }
  
-  deleteMessage = async () => {
+  deleteMessage = () => {
       const msgBox = event.target.parentElement;
       if (msgBox.classList[0] === 'mailView') {
         const { id } = msgBox;
@@ -77,31 +83,47 @@ class Inbox extends Component {
     }
   }
  
-
   render() {
     const { messages } = this.props;
     const { message } = this.props;
     const allMessages = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        !message.receiverdelete && <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
+        message.receiverid == this.currentUser && !message.receiverdelete && <MailLink key={message.id} id={message.id} date={message.createon} sender={message.senderid} title={message.subject} messageData={message.message} onClick={this.showMessage} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
       <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const allMessagesMobile = messages.data && messages.data.rows.length >= 1 ? (
       messages.data.rows.map(message => (
-        !message.receiverdelete && <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
+        message.receiverid !== this.currentUser && !message.receiverdelete && <MailLinkMobile dp={dp} key={message.id} id={message.id}  date={message.createon} sender={message.senderid} subject={message.subject} onClick={this.showMessageMobile} classes={message.status === 'unread'? 'fas fa-circle' : ''} />
       ))
     ) : (
       <p><img src={noMessage} height="430px" width="400px" alt="No message yet" /></p>
     );
     const specificMsg = message.data ? (
-        <MailView key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} deleteMsg={this.deleteMessage} />
+        <MailView 
+          key={message.data.id}
+          id={message.data.id}
+          sender={message.data.senderid}
+          title={message.data.subject}
+          messageBody={message.data.message}
+          receiver={message.data.receiverid}
+          delMsg={this.deleteMessage}
+        />
     ) : (
       <p className="empty">No message selected yet</p>
     );
     const specificMsgMobile = message.data ? (
-      <MailViewMobile key={message.data.id} id={message.data.id} sender={message.data.senderid} title={message.data.subject} messageBody={message.data.message} receiver={message.data.receiverid} classes={`box-12-inbox ${ this.state.mobileMsg ? 'readMessage' : 'closeMessage' }` } back={this.closeMessage} />
+      <MailViewMobile 
+        key={message.data.id} 
+        id={message.data.id} 
+        sender={message.data.senderid} 
+        title={message.data.subject} 
+        messageBody={message.data.message} 
+        receiver={message.data.receiverid} 
+        classes={`box-12-inbox ${ this.state.mobileMsg ? 'readMessage' : 'closeMessage' }` } 
+        back={this.closeMessage}
+      />
   ) : (
     ''
   );
